@@ -230,17 +230,17 @@ projects.ts
 **Goal:** projects visible and easy to scan.
 
 **Tasks**
-- [ ] Create `data/projects.ts` with required fields
-- [ ] Add at least 2 meaningful projects
-- [ ] Implement `/projects` page
-- [ ] Create reusable `ProjectCard` component
-- [ ] Link cards to detail pages
-- [ ] Ensure static generation (SSG)
+- [x] Create `data/projects.ts` with required fields
+- [x] Add at least 2 meaningful projects
+- [x] Implement `/projects` page
+- [x] Create reusable `ProjectCard` component
+- [x] Link cards to detail pages
+- [x] Ensure static generation (SSG)
 
 **Done when**
-- [ ] Project list renders correctly
-- [ ] Cards are consistent and responsive
-- [ ] Detail links work
+- [x] Project list renders correctly
+- [x] Cards are consistent and responsive
+- [x] Detail links work
 
 ---
 
