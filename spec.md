@@ -283,6 +283,87 @@ projects.ts
 
 ---
 
+### 🟦 Milestone 6 — Internationalization (PT/EN toggle)
+**Goal:** allow recruiters/tech leads to read the portfolio in English.
+
+**Constraints**
+- English content must be derived from the same facts as Portuguese (no inventing).
+- Keep URLs stable and clear (choose one approach and apply consistently).
+
+**Recommended approach**
+- Dictionary-based translation (no CMS). Either:
+  - A) Route-based: `/pt` and `/en`, or
+  - B) UI toggle with stored preference and language in URL (preferred for clarity)
+
+**Tasks**
+- [ ] Decide i18n strategy: route-based (`/pt`, `/en`) or locale segment in Next App Router
+- [ ] Create translation dictionaries for core UI copy (e.g., `data/i18n/pt.ts`, `data/i18n/en.ts`)
+- [ ] Implement a language toggle in the Header (PT / EN)
+- [ ] Translate: Home, About, Projects list, Project detail, Contact
+- [ ] Ensure metadata (title/description) is localized
+- [ ] Ensure the selected language persists (cookie or localStorage) and is reflected in navigation
+
+**Done when**
+- [ ] Recruiter can switch PT ↔ EN from the UI
+- [ ] All pages have PT and EN versions
+- [ ] Project content is consistently translated (same meaning, same facts)
+- [ ] Metadata is correct for both languages
+
+---
+
+### 🟦 Milestone 7 — Themes (3 selectable portfolio themes)
+**Goal:** provide 3 visually distinct themes that can be switched easily.
+
+**Constraints**
+- Keep layout structure the same; only visual theme changes.
+- Maintain accessibility (contrast, focus) for all themes.
+- Avoid heavy gradients; keep professional.
+
+**Tasks**
+- [ ] Define a design token system using CSS variables (e.g., `--bg`, `--fg`, `--muted`, `--accent`, `--border`)
+- [ ] Create 3 themes with meaningful names (e.g., `classic`, `minimal`, `bold`) and distinct token values
+- [ ] Implement a theme switcher UI (header or settings area)
+- [ ] Persist selected theme (localStorage) and apply on first paint to avoid flash
+- [ ] Ensure focus styles remain visible across themes
+- [ ] Ensure all main pages render correctly under each theme
+
+**Done when**
+- [ ] Recruiter can switch among 3 themes in the UI
+- [ ] Theme persists after refresh
+- [ ] No “flash” of incorrect theme on page load
+- [ ] Lighthouse + accessibility remain reasonable on all themes
+
+---
+
+### 🟦 Milestone 8 — CV Update Workflow (detect changes and update site content)
+**Goal:** when a new CV is uploaded, the agent can identify what changed and update the portfolio accordingly.
+
+**Key idea**
+- Treat a text version as the canonical source for diffs.
+- Keep a simple “content mapping” so the agent knows which sections/pages depend on which CV fields.
+
+**Tasks**
+- [ ] Add a canonical text source for CV: `docs/cv.md` (primary) and keep `docs/cv.pdf` as reference
+- [ ] Create `docs/cv_versions/` and store snapshots (e.g., `cv_2026-01-29.md`, `cv_YYYY-MM-DD.md`)
+- [ ] Add a `docs/cv_change_log.md` template for recording updates (what changed, date, why)
+- [ ] Create `docs/content_map.md` describing where each CV section maps into the site (e.g., Summary → Home/About; Experience → About; Projects → Projects pages)
+- [ ] Update AGENTS.md with a “CV update mode” procedure (see below)
+- [ ] Define a repeatable process: when `docs/cv.md` changes, agent must compare against latest snapshot and update only impacted pages/data
+
+**Done when**
+- [ ] There is a clear canonical CV text file (`docs/cv.md`)
+- [ ] There is at least one version snapshot in `docs/cv_versions/`
+- [ ] Agent can produce a changelist: “what changed” and “which site sections must change”
+- [ ] Updating the CV results in targeted edits (no random rewriting of unrelated copy)
+
+**CV update mode (procedure to add to AGENTS.md)**
+- [ ] Add instructions: when CV changes, diff `docs/cv.md` vs latest file in `docs/cv_versions/`
+- [ ] Extract a “Change Summary” (new roles, dates, skills, projects, metrics)
+- [ ] Update only the mapped sections in code/data according to `docs/content_map.md`
+- [ ] Create a new snapshot in `docs/cv_versions/` after updates
+
+---
+
 ## 11. Explicit Non-goals (Out of Scope v1)
 Do NOT implement:
 - CMS

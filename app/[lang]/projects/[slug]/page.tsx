@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProjectBySlug } from "../../../data/projects";
+import { getDictionary, type Language } from "../../../../data/i18n";
+import { getLocalizedProject, getProjectBySlug } from "../../../../data/projects";
 
 type ProjectPageProps = {
-  params: {
+  params: Promise<{
+    lang: Language;
     slug: string;
-  };
+  }>;
 };
 
 export const dynamic = "force-dynamic";
@@ -13,68 +15,80 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug);
+  const { lang, slug } = await params;
+  const dictionary = getDictionary(lang);
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return {
-      title: "Projeto não encontrado | Carolina Vasconcelos",
-      description: "Projeto não encontrado.",
+      title: dictionary.meta.projectNotFoundTitle,
+      description: dictionary.meta.projectNotFoundDescription,
     };
   }
 
+  const localizedProject = getLocalizedProject(project, lang);
+
   return {
-    title: `${project.title} | Carolina Vasconcelos`,
-    description: project.summary,
+    title: `${localizedProject.title} | Carolina Vasconcelos`,
+    description: localizedProject.summary,
   };
 }
 
-export default function ProjectDetailPage({ params }: ProjectPageProps) {
+export default async function ProjectDetailPage({
+  params,
+}: ProjectPageProps) {
   // SSR: dynamic route without static params keeps project details server-rendered.
-  const project = getProjectBySlug(params.slug);
+  const { lang, slug } = await params;
+  const project = getProjectBySlug(slug);
+  const dictionary = getDictionary(lang);
 
   if (!project) {
     notFound();
   }
+
+  const localizedProject = getLocalizedProject(project, lang);
 
   return (
     <section className="page-container py-20 md:py-24">
       <div className="space-y-12">
         <div className="space-y-6">
           <p className="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">
-            Projeto
+            {dictionary.projectDetail.eyebrow}
           </p>
           <h1 className="font-display text-4xl leading-tight text-[var(--ink)] md:text-5xl">
-            {project.title}
+            {localizedProject.title}
           </h1>
-          <p className="text-lg text-[var(--muted)]">{project.summary}</p>
+          <p className="text-lg text-[var(--muted)]">
+            {localizedProject.summary}
+          </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-8">
             <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
-                Contexto e problema
+                {dictionary.projectDetail.problemTitle}
               </h2>
               <p className="mt-4 text-sm text-[var(--muted)]">
-                {project.problem}
+                {localizedProject.problem}
               </p>
             </div>
             <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
-                Decisões técnicas
+                {dictionary.projectDetail.decisionsTitle}
               </h2>
               <ul className="mt-5 space-y-3 text-sm text-[var(--muted)]">
-                {project.decisions.map((decision) => (
+                {localizedProject.decisions.map((decision) => (
                   <li key={decision}>{decision}</li>
                 ))}
               </ul>
             </div>
             <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
-                Resultados e impacto
+                {dictionary.projectDetail.resultsTitle}
               </h2>
               <ul className="mt-5 space-y-3 text-sm text-[var(--muted)]">
-                {project.results.map((result) => (
+                {localizedProject.results.map((result) => (
                   <li key={result}>{result}</li>
                 ))}
               </ul>
@@ -83,10 +97,10 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="space-y-6">
             <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8">
               <h2 className="font-display text-2xl text-[var(--ink)]">
-                Stack
+                {dictionary.projectDetail.stackTitle}
               </h2>
               <ul className="mt-5 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-                {project.stack.map((item) => (
+                {localizedProject.stack.map((item) => (
                   <li
                     key={item}
                     className="rounded-full border border-[rgba(27,27,27,0.12)] px-3 py-1"
@@ -98,31 +112,32 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
             <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8">
               <h2 className="font-display text-2xl text-[var(--ink)]">
-                Links externos
+                {dictionary.projectDetail.linksTitle}
               </h2>
               <div className="mt-4 flex flex-wrap gap-4 text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
-                {project.links?.repo ? (
+                {localizedProject.links?.repo ? (
                   <a
-                    href={project.links.repo}
+                    href={localizedProject.links.repo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
                   >
-                    Repo
+                    {dictionary.labels.repo}
                   </a>
                 ) : null}
-                {project.links?.demo ? (
+                {localizedProject.links?.demo ? (
                   <a
-                    href={project.links.demo}
+                    href={localizedProject.links.demo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
                   >
-                    Demo
+                    {dictionary.labels.demo}
                   </a>
                 ) : null}
-                {!project.links?.repo && !project.links?.demo ? (
-                  <span>Links privados</span>
+                {!localizedProject.links?.repo &&
+                !localizedProject.links?.demo ? (
+                  <span>{dictionary.projects.privateLinks}</span>
                 ) : null}
               </div>
             </div>

@@ -1,15 +1,21 @@
+import type { Dictionary } from "../data/i18n";
+
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/" },
 ];
 
-export default function Footer() {
+type FooterProps = {
+  dictionary: Dictionary;
+};
+
+export default function Footer({ dictionary }: FooterProps) {
   return (
     <footer className="border-t border-[rgba(27,27,27,0.08)]">
       <div className="page-container flex flex-col gap-6 py-10 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">
           <p className="font-display text-base text-[var(--ink)]">
-            Vamos conversar?
+            {dictionary.footer.title}
           </p>
           <a
             href="mailto:carol.vasconcelos080@gmail.com"

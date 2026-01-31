@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { getDictionary, type Language } from "../../../data/i18n";
 
-export const metadata: Metadata = {
-  title: "Contato | Carolina Vasconcelos",
-  description:
-    "Entre em contato com Carolina Vasconcelos para oportunidades e conversas sobre engenharia de software.",
+type ContactPageProps = {
+  params: Promise<{
+    lang: Language;
+  }>;
 };
 
 const links = [
@@ -11,24 +12,36 @@ const links = [
   { label: "LinkedIn", href: "https://www.linkedin.com/" },
 ];
 
-export default function ContactPage() {
+export async function generateMetadata({
+  params,
+}: ContactPageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
+  return {
+    title: dictionary.meta.contactTitle,
+    description: dictionary.meta.contactDescription,
+  };
+}
+
+export default async function ContactPage({ params }: ContactPageProps) {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
+
   return (
     <section className="page-container py-20 md:py-24">
       <div className="max-w-2xl space-y-8">
         <p className="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">
-          Contato
+          {dictionary.contact.eyebrow}
         </p>
         <h1 className="font-display text-4xl leading-tight text-[var(--ink)] md:text-5xl">
-          Vamos conversar sobre desafios técnicos?
+          {dictionary.contact.title}
         </h1>
         <p className="text-lg text-[var(--muted)]">
-          Estou aberta a oportunidades que envolvam arquitetura, performance e
-          experiências digitais acessíveis. Envie uma mensagem para alinharmos
-          objetivos e próximos passos.
+          {dictionary.contact.intro}
         </p>
         <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
-            Email direto
+            {dictionary.footer.emailLabel}
           </p>
           <a
             href="mailto:carol.vasconcelos080@gmail.com"
