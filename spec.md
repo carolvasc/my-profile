@@ -193,18 +193,18 @@ projects.ts
 **Goal:** project ready for feature development.
 
 **Tasks**
-- [ ] Initialize Next.js project (App Router + TypeScript)
-- [ ] Configure Tailwind CSS
-- [ ] Define base folder structure (`app/`, `components/`, `data/`)
-- [ ] Implement global layout (`app/layout.tsx`)
-- [ ] Create responsive container pattern
-- [ ] Implement Header with navigation
-- [ ] Implement Footer with external links and email
+- [x] Initialize Next.js project (App Router + TypeScript)
+- [x] Configure Tailwind CSS
+- [x] Define base folder structure (`app/`, `components/`, `data/`)
+- [x] Implement global layout (`app/layout.tsx`)
+- [x] Create responsive container pattern
+- [x] Implement Header with navigation
+- [x] Implement Footer with external links and email
 
 **Done when**
-- [ ] App runs locally without errors
-- [ ] Layout applied to all pages
-- [ ] Header and Footer visible and responsive
+- [x] App runs locally without errors
+- [x] Layout applied to all pages
+- [x] Header and Footer visible and responsive
 
 ---
 
