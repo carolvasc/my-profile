@@ -248,18 +248,18 @@ projects.ts
 **Goal:** demonstrate real SSR and technical depth.
 
 **Tasks**
-- [ ] Implement dynamic route `/projects/[slug]`
-- [ ] Fetch project data on the server
-- [ ] Render page fully on the server
-- [ ] Handle invalid slugs (not-found)
-- [ ] Add dynamic metadata
-- [ ] Document in code where and why SSR is used
+- [x] Implement dynamic route `/projects/[slug]`
+- [x] Fetch project data on the server
+- [x] Render page fully on the server
+- [x] Handle invalid slugs (not-found)
+- [x] Add dynamic metadata
+- [x] Document in code where and why SSR is used
 
 **Done when**
-- [ ] Content is server-rendered
-- [ ] No `use client` for core rendering
-- [ ] Metadata changes per project
-- [ ] Invalid routes handled gracefully
+- [x] Content is server-rendered
+- [x] No `use client` for core rendering
+- [x] Metadata changes per project
+- [x] Invalid routes handled gracefully
 
 ---
 
@@ -267,19 +267,19 @@ projects.ts
 **Goal:** portfolio ready for real-world evaluation.
 
 **Tasks**
-- [ ] Review semantic HTML
-- [ ] Verify heading hierarchy
-- [ ] Test keyboard navigation and focus
-- [ ] Check color contrast
-- [ ] Review responsiveness
-- [ ] Remove unused code/dependencies
-- [ ] Deploy to Vercel
+- [x] Review semantic HTML
+- [x] Verify heading hierarchy
+- [x] Test keyboard navigation and focus
+- [x] Check color contrast
+- [x] Review responsiveness
+- [x] Remove unused code/dependencies
+- [x] Deploy to Vercel
 
 **Done when**
-- [ ] Site is publicly accessible
-- [ ] Navigation is smooth
-- [ ] Build passes cleanly
-- [ ] Lighthouse scores are reasonable (>80)
+- [x] Site is publicly accessible
+- [x] Navigation is smooth
+- [x] Build passes cleanly
+- [x] Lighthouse scores are reasonable (>80)
 
 ---
 
