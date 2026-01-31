@@ -212,17 +212,17 @@ projects.ts
 **Goal:** core content and navigation in place.
 
 **Tasks**
-- [ ] Implement Home page (`/`)
-- [ ] Implement About page (`/about`)
-- [ ] Implement Contact page (`/contact`)
-- [ ] Add real content (no lorem ipsum)
-- [ ] Add static metadata for each page
-- [ ] Ensure all pages are statically rendered (SSG)
+- [x] Implement Home page (`/`)
+- [x] Implement About page (`/about`)
+- [x] Implement Contact page (`/contact`)
+- [x] Add real content (no lorem ipsum)
+- [x] Add static metadata for each page
+- [x] Ensure all pages are statically rendered (SSG)
 
 **Done when**
-- [ ] Navigation works across all pages
-- [ ] Pages render without client-side JS
-- [ ] Metadata visible in page source
+- [x] Navigation works across all pages
+- [x] Pages render without client-side JS
+- [x] Metadata visible in page source
 
 ---
 
