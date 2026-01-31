@@ -2,6 +2,15 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   lang: "en",
+  identity: {
+    name: "Carolina Vasconcelos de Souza",
+    role: "Senior Software Engineer",
+    location: "São Paulo, Brazil",
+    summary:
+      "Based in São Paulo, with experience in front-end, back-end, and digital product architecture. I focus on performance, WCAG AA accessibility, and data-informed technical decisions.",
+    email: "carol.vasconcelos080@gmail.com",
+    phone: "11 95802-3724",
+  },
   nav: {
     home: "Home",
     about: "About",
@@ -11,6 +20,11 @@ export const en: Dictionary = {
   header: {
     toggleLabel: "Language",
     navLabel: "Main navigation",
+    themeLabel: "Theme",
+    themeClassic: "Classic",
+    themeMinimalist: "Minimalist",
+    languagePt: "PT",
+    languageEn: "EN",
   },
   accessibility: {
     skipToContent: "Skip to main content",
@@ -81,10 +95,119 @@ export const en: Dictionary = {
     title: "Let's talk about technical challenges?",
     intro:
       "I am open to opportunities involving architecture, performance, and accessible digital experiences. Send a message so we can align on goals and next steps.",
+    emailLabel: "Direct email",
   },
   labels: {
     repo: "Repo",
     demo: "Demo",
+    github: "GitHub",
+    linkedin: "LinkedIn",
+  },
+  stack: {
+    angular: "Angular",
+    react: "React",
+    typescript: "TypeScript",
+    dotnet: ".NET (C#)",
+    node: "Node.js",
+    mongodb: "MongoDB",
+    mysql: "MySQL",
+    rabbitmq: "RabbitMQ",
+    cypress: "Cypress",
+    docker: "Docker",
+    kubernetes: "Kubernetes",
+    cloud: "GCP/AWS",
+    datadog: "Datadog",
+    sentry: "Sentry",
+    storybook: "Storybook",
+    wcag: "WCAG AA",
+    cicd: "CI/CD",
+  },
+  minimalist: {
+    heroGreeting: "Hello! I'm",
+    biographyTitle: "Biography",
+    educationTitle: "Education",
+    experienceTitle: "Experience",
+    professionalTitle: "Professionality",
+    sidebarBio:
+      "I focus on performance, WCAG AA accessibility, and scalable architecture for digital products.",
+  },
+  education: {
+    item1: {
+      school: "UNINOVE",
+      degree: "BSc in Computer Science",
+      period: "02/2015 – 12/2018",
+      description: "BSc in Computer Science.",
+    },
+  },
+  experience: {
+    item1: {
+      company: "TOTVS",
+      role: "Senior Development Analyst",
+      period: "07/2023 – Present",
+      description:
+        "Optimized critical MongoDB searches and improved application flows with conversion impact.",
+    },
+    item2: {
+      company: "TOTVS",
+      role: "Mid-level Development Analyst",
+      period: "07/2020 – 07/2023",
+      description:
+        "Improved import/export routines and refactored screens to enhance usability.",
+    },
+    item3: {
+      company: "Grupo KRS",
+      role: "Junior Front-end Developer",
+      period: "09/2018 – 06/2020",
+      description: "Junior Front-end Developer.",
+    },
+  },
+  skills: {
+    accessibility: "WCAG AA accessibility",
+    designSystems: "Design systems with Storybook",
+    angularReact: "Angular, React, and TypeScript",
+    dotnet: ".NET (C#) with DDD and CQRS",
+    mongodbMysql: "MongoDB and MySQL",
+    observability: "Observability with Datadog and Sentry",
+    tests: "E2E testing and TDD",
+    cicd: "CI/CD with Azure DevOps",
+    cloud: "GCP and AWS",
+    microservices: "Microservices with RabbitMQ",
+  },
+  project: {
+    mongodb: {
+      title: "Faster critical searches in Talent Attraction",
+      summary:
+        "Restructured MongoDB queries and indexes to reduce response time in job and application flows.",
+      problem:
+        "Screening and application flows suffered from slow critical searches, impacting recruiters and candidates.",
+      decisions: [
+        "Mapped the most used queries to identify performance bottlenecks.",
+        "Created compound and text indexes aligned to search patterns.",
+        "Monitored impact with metrics and continuous observability.",
+      ],
+      results: [
+        "Reduced response time in job and application flows.",
+        "Smoother screening experience for recruiters.",
+        "Foundation prepared for growth with better scalability.",
+      ],
+    },
+    designSystem: {
+      title: "Accessible and reusable design system",
+      summary:
+        "Standardized components with WCAG AA and Storybook documentation to accelerate onboarding and reduce rework.",
+      problem:
+        "Inconsistent components and missing documentation slowed UI scalability and onboarding.",
+      decisions: [
+        "Defined accessibility guidelines and shared UI standards.",
+        "Documented more than 40 components in Storybook.",
+        "Integrated quality checks into the pipeline.",
+      ],
+      results: [
+        "Reduced code duplication and increased UI reuse.",
+        "Faster onboarding for new developers.",
+        "Accessibility compliance applied across multiple products.",
+      ],
+    },
   },
   meta: {
     homeTitle: "Carolina Vasconcelos | Senior Software Engineer",

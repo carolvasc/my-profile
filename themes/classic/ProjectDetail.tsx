@@ -1,53 +1,17 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getDictionary, type Language } from "../../../../data/i18n";
-import { getLocalizedProject, getProjectBySlug } from "../../../../data/projects";
+import type { Dictionary } from "../../data/i18n";
+import { content } from "../../data/content";
+import { getByKey } from "../../lib/i18n";
+import type { Project } from "../../data/projects";
 
-type ProjectPageProps = {
-  params: Promise<{
-    lang: Language;
-    slug: string;
-  }>;
+type ClassicProjectDetailProps = {
+  dictionary: Dictionary;
+  project: Project;
 };
 
-export const dynamic = "force-dynamic";
-
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
-  const { lang, slug } = await params;
-  const dictionary = getDictionary(lang);
-  const project = getProjectBySlug(slug);
-
-  if (!project) {
-    return {
-      title: dictionary.meta.projectNotFoundTitle,
-      description: dictionary.meta.projectNotFoundDescription,
-    };
-  }
-
-  const localizedProject = getLocalizedProject(project, lang);
-
-  return {
-    title: `${localizedProject.title} | Carolina Vasconcelos`,
-    description: localizedProject.summary,
-  };
-}
-
-export default async function ProjectDetailPage({
-  params,
-}: ProjectPageProps) {
-  // SSR: dynamic route without static params keeps project details server-rendered.
-  const { lang, slug } = await params;
-  const project = getProjectBySlug(slug);
-  const dictionary = getDictionary(lang);
-
-  if (!project) {
-    notFound();
-  }
-
-  const localizedProject = getLocalizedProject(project, lang);
-
+export default function ClassicProjectDetail({
+  dictionary,
+  project,
+}: ClassicProjectDetailProps) {
   return (
     <section className="page-container py-20 md:py-24">
       <div className="space-y-12">
@@ -56,68 +20,68 @@ export default async function ProjectDetailPage({
             {dictionary.projectDetail.eyebrow}
           </p>
           <h1 className="font-display text-4xl leading-tight text-[var(--ink)] md:text-5xl">
-            {localizedProject.title}
+            {getByKey(dictionary, project.titleKey)}
           </h1>
           <p className="text-lg text-[var(--muted)]">
-            {localizedProject.summary}
+            {getByKey(dictionary, project.summaryKey)}
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-8">
-            <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-[var(--shadow)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
                 {dictionary.projectDetail.problemTitle}
               </h2>
               <p className="mt-4 text-sm text-[var(--muted)]">
-                {localizedProject.problem}
+                {getByKey(dictionary, project.problemKey)}
               </p>
             </div>
-            <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-[var(--shadow)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
                 {dictionary.projectDetail.decisionsTitle}
               </h2>
               <ul className="mt-5 space-y-3 text-sm text-[var(--muted)]">
-                {localizedProject.decisions.map((decision) => (
-                  <li key={decision}>{decision}</li>
+                {project.decisionsKeys.map((key) => (
+                  <li key={key}>{getByKey(dictionary, key)}</li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-[var(--shadow)]">
               <h2 className="font-display text-2xl text-[var(--ink)]">
                 {dictionary.projectDetail.resultsTitle}
               </h2>
               <ul className="mt-5 space-y-3 text-sm text-[var(--muted)]">
-                {localizedProject.results.map((result) => (
-                  <li key={result}>{result}</li>
+                {project.resultsKeys.map((key) => (
+                  <li key={key}>{getByKey(dictionary, key)}</li>
                 ))}
               </ul>
             </div>
           </div>
           <div className="space-y-6">
-            <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8">
               <h2 className="font-display text-2xl text-[var(--ink)]">
                 {dictionary.projectDetail.stackTitle}
               </h2>
               <ul className="mt-5 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-                {localizedProject.stack.map((item) => (
+                {project.stackKeys.map((key) => (
                   <li
-                    key={item}
-                    className="rounded-full border border-[rgba(27,27,27,0.12)] px-3 py-1"
+                    key={key}
+                    className="rounded-full border border-[var(--border)] px-3 py-1"
                   >
-                    {item}
+                    {getByKey(dictionary, key)}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-8">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8">
               <h2 className="font-display text-2xl text-[var(--ink)]">
                 {dictionary.projectDetail.linksTitle}
               </h2>
               <div className="mt-4 flex flex-wrap gap-4 text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
-                {localizedProject.links?.repo ? (
+                {project.links?.repo ? (
                   <a
-                    href={localizedProject.links.repo}
+                    href={project.links.repo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
@@ -125,9 +89,9 @@ export default async function ProjectDetailPage({
                     {dictionary.labels.repo}
                   </a>
                 ) : null}
-                {localizedProject.links?.demo ? (
+                {project.links?.demo ? (
                   <a
-                    href={localizedProject.links.demo}
+                    href={project.links.demo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
@@ -135,9 +99,8 @@ export default async function ProjectDetailPage({
                     {dictionary.labels.demo}
                   </a>
                 ) : null}
-                {!localizedProject.links?.repo &&
-                !localizedProject.links?.demo ? (
-                  <span>{dictionary.projects.privateLinks}</span>
+                {!project.links?.repo && !project.links?.demo ? (
+                  <span>{getByKey(dictionary, content.projects.privateLinksKey)}</span>
                 ) : null}
               </div>
             </div>

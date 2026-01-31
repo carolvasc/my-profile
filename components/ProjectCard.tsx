@@ -1,58 +1,60 @@
 import Link from "next/link";
 import type { Dictionary, Language } from "../data/i18n";
 import type { Project } from "../data/projects";
-import { getLocalizedProject } from "../data/projects";
+import { content } from "../data/content";
+import { getByKey } from "../lib/i18n";
+import type { ThemeId } from "../themes/types";
 
 type ProjectCardProps = {
   project: Project;
-  lang: Language;
+  locale: Language;
+  theme: ThemeId;
   dictionary: Dictionary;
 };
 
 export default function ProjectCard({
   project,
-  lang,
+  locale,
+  theme,
   dictionary,
 }: ProjectCardProps) {
-  const localizedProject = getLocalizedProject(project, lang);
-
   return (
-    <article className="flex h-full flex-col justify-between rounded-3xl border border-[rgba(27,27,27,0.12)] bg-white/60 p-6 shadow-[0_25px_60px_-45px_rgba(0,0,0,0.5)]">
+    <article className="flex h-full flex-col justify-between rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-[var(--shadow)]">
       <div className="space-y-4">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
-            {dictionary.projects.cardEyebrow}
+            {getByKey(dictionary, content.projects.cardEyebrowKey)}
           </p>
           <h2 className="font-display text-2xl text-[var(--ink)]">
-            {localizedProject.title}
+            {getByKey(dictionary, project.titleKey)}
           </h2>
           <p className="text-sm text-[var(--muted)]">
-            {localizedProject.summary}
+            {getByKey(dictionary, project.summaryKey)}
           </p>
         </div>
         <ul className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-          {localizedProject.stack.map((item) => (
+          {project.stackKeys.map((key) => (
             <li
-              key={item}
-              className="rounded-full border border-[rgba(27,27,27,0.12)] px-3 py-1"
+              key={key}
+              className="rounded-full border border-[var(--border)] px-3 py-1"
             >
-              {item}
+              {getByKey(dictionary, key)}
             </li>
           ))}
         </ul>
       </div>
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.25em] text-[var(--muted)]">
         <Link
-          href={`/${lang}/projects/${localizedProject.slug}`}
+          href={`/${locale}/t/${theme}/projects/${project.slug}`}
           className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
         >
-          {dictionary.projects.detailsLink}
+          {getByKey(dictionary, content.projects.detailsLabelKey)}
         </Link>
-        {localizedProject.links?.repo || localizedProject.links?.demo ? (
+        {project.links?.repo || project.links?.demo ? (
           <div className="flex gap-3">
-            {localizedProject.links?.repo ? (
+            {project.links?.repo ? (
               <a
-                href={localizedProject.links.repo}
+                href={project.links.repo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
@@ -60,9 +62,9 @@ export default function ProjectCard({
                 {dictionary.labels.repo}
               </a>
             ) : null}
-            {localizedProject.links?.demo ? (
+            {project.links?.demo ? (
               <a
-                href={localizedProject.links.demo}
+                href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-[var(--ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
@@ -73,7 +75,7 @@ export default function ProjectCard({
           </div>
         ) : (
           <span className="text-[var(--muted)]">
-            {dictionary.projects.privateLinks}
+            {getByKey(dictionary, content.projects.privateLinksKey)}
           </span>
         )}
       </div>

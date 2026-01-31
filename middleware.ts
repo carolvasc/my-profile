@@ -14,20 +14,26 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const match = pathname.match(/^\/(pt|en)(\/|$)/);
+  const match = pathname.match(/^\/(pt|en)\/t\/(classic|minimalist)(\/|$)/);
   const cookieLang = request.cookies.get("lang")?.value;
+  const cookieTheme = request.cookies.get("theme")?.value;
 
   if (match) {
     const response = NextResponse.next();
     if (cookieLang !== match[1]) {
       response.cookies.set("lang", match[1], { path: "/" });
     }
+    if (cookieTheme !== match[2]) {
+      response.cookies.set("theme", match[2], { path: "/" });
+    }
     return response;
   }
 
   const lang = cookieLang === "en" ? "en" : "pt";
+  const theme = cookieTheme === "minimalist" ? "minimalist" : "classic";
   const url = request.nextUrl.clone();
-  url.pathname = `/${lang}${pathname === "/" ? "" : pathname}`;
+  const suffix = pathname === "/" ? "" : pathname;
+  url.pathname = `/${lang}/t/${theme}${suffix}`;
   return NextResponse.redirect(url);
 }
 

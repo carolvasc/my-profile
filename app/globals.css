@@ -7,6 +7,12 @@
   --ink: #1b1b1b;
   --muted: #6d6257;
   --accent: #b64a2f;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-muted: rgba(255, 255, 255, 0.4);
+  --border: rgba(27, 27, 27, 0.12);
+  --hover: rgba(27, 27, 27, 0.06);
+  --shadow: 0 25px 60px -45px rgba(0, 0, 0, 0.5);
+  --shadow-strong: 10px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 @theme inline {
@@ -15,21 +21,31 @@
   --font-sans: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #12100d;
-    --foreground: #f7f3ed;
-    --surface: #12100d;
-    --ink: #f7f3ed;
-    --muted: #c7beb4;
-    --accent: #d96d4d;
-  }
+[data-theme="minimalist"] {
+  --background: #e6e6e6;
+  --foreground: #333333;
+  --surface: #e6e6e6;
+  --ink: #333333;
+  --muted: #777777;
+  --accent: #b18ad9;
+  --card: #ffffff;
+  --card-muted: #eeeeee;
+  --border: #dddddd;
+  --hover: rgba(177, 138, 217, 0.15);
+  --shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 10px 0 10px rgba(0, 0, 0, 0.2);
+  --font-body: var(--font-minimal);
+  --font-display: var(--font-minimal);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
+}
+
+[data-theme="minimalist"] .classic-glow {
+  display: none;
 }
 
 @layer utilities {
@@ -39,5 +55,15 @@ body {
 
   .font-display {
     font-family: var(--font-display), serif;
+  }
+
+  .my-card {
+    border-right: 20px solid purple;
+    height: 100%;
+    margin-top: 40px;
+  }
+
+  .my-card > div {
+    align-content: center;
   }
 }

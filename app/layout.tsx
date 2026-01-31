@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Fraunces, Spline_Sans } from "next/font/google";
+import { Fraunces, Jost, Spline_Sans } from "next/font/google";
 import "./globals.css";
 
 const displayFont = Fraunces({
@@ -10,6 +10,11 @@ const displayFont = Fraunces({
 
 const bodyFont = Spline_Sans({
   variable: "--font-body",
+  subsets: ["latin"],
+});
+
+const minimalistFont = Jost({
+  variable: "--font-minimal",
   subsets: ["latin"],
 });
 
@@ -26,12 +31,16 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value === "en" ? "en" : "pt-BR";
+  const theme =
+    cookieStore.get("theme")?.value === "minimalist" ? "minimalist" : "classic";
 
   return (
-    <html lang={lang}>
-      <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
+    <html lang={lang} data-theme={theme}>
+      <body
+        className={`${bodyFont.variable} ${displayFont.variable} ${minimalistFont.variable} antialiased`}
+      >
         <div className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
-          <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(60rem_40rem_at_80%_-10%,rgba(182,74,47,0.12),transparent)]" />
+          <div className="classic-glow pointer-events-none fixed inset-0 bg-[radial-gradient(60rem_40rem_at_80%_-10%,rgba(182,74,47,0.12),transparent)]" />
           {children}
         </div>
       </body>

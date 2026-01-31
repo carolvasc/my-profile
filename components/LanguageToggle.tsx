@@ -6,24 +6,23 @@ import type { Language } from "../data/i18n";
 type LanguageToggleProps = {
   currentLang: Language;
   label: string;
+  languageLabels: Record<Language, string>;
 };
 
 const languages: Language[] = ["pt", "en"];
 
 const replaceLangInPath = (pathname: string, lang: Language) => {
   const segments = pathname.split("/").filter(Boolean);
-  if (segments.length === 0) {
-    return `/${lang}`;
-  }
-  if (segments[0] === "pt" || segments[0] === "en") {
+  if (segments.length >= 3 && segments[1] === "t") {
     return `/${[lang, ...segments.slice(1)].join("/")}`;
   }
-  return `/${[lang, ...segments].join("/")}`;
+  return `/${lang}/t/classic`;
 };
 
 export default function LanguageToggle({
   currentLang,
   label,
+  languageLabels,
 }: LanguageToggleProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -31,7 +30,6 @@ export default function LanguageToggle({
   const handleSwitch = (lang: Language) => {
     if (lang === currentLang) return;
     const nextPath = replaceLangInPath(pathname, lang);
-    localStorage.setItem("lang", lang);
     document.cookie = `lang=${lang}; path=/; max-age=31536000`;
     router.push(nextPath);
   };
@@ -47,11 +45,11 @@ export default function LanguageToggle({
           className={`cursor-pointer rounded-full border px-3 py-1 transition ${
             lang === currentLang
               ? "border-[var(--ink)] text-[var(--ink)]"
-              : "border-[rgba(27,27,27,0.12)] hover:text-[var(--ink)]"
+              : "border-[var(--border)] hover:text-[var(--ink)]"
           }`}
           aria-pressed={lang === currentLang}
         >
-          {lang.toUpperCase()}
+          {languageLabels[lang]}
         </button>
       ))}
     </div>
