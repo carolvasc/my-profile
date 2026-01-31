@@ -9,6 +9,7 @@ Build and publish a professional portfolio website that helps recruiters and tec
 
 **Principle:** ship fast with quality. Scope discipline is mandatory.
 **Design workflow:** always use the `frontend-design` skill when creating or restyling screens, components, or UI features to maintain a consistent visual pattern across the portfolio.
+**Content workflow:** before implementing any milestone, always read and extract text from `docs/cv.pdf` to align content and details.
 **Language:** use Brazil portuguese as main language
 
 ---
