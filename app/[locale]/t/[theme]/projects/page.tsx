@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import type { Language } from "../../../../../data/i18n";
-import { getDictionary } from "../../../../../data/i18n";
+import { notFound } from "next/navigation";
+import { getDictionary, isLanguage } from "../../../../../data/i18n";
 import ClassicProjects from "../../../../../themes/classic/Projects";
 import MinimalistProjects from "../../../../../themes/minimalist/Projects";
-import type { ThemeId } from "../../../../../themes/types";
+import { isTheme } from "../../../../../themes/registry";
 
 type ThemeProjectsProps = {
   params: Promise<{
-    locale: Language;
-    theme: ThemeId;
+    locale: string;
+    theme: string;
   }>;
 };
 
 export async function generateMetadata({
   params,
 }: ThemeProjectsProps): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: routeLocale } = await params;
+  const locale = isLanguage(routeLocale) ? routeLocale : "pt";
   const dictionary = getDictionary(locale);
   return {
     title: dictionary.meta.projectsTitle,
@@ -25,6 +26,11 @@ export async function generateMetadata({
 
 export default async function ThemeProjects({ params }: ThemeProjectsProps) {
   const { locale, theme } = await params;
+
+  if (!isLanguage(locale) || !isTheme(theme)) {
+    notFound();
+  }
+
   const dictionary = getDictionary(locale);
 
   if (theme === "minimalist") {

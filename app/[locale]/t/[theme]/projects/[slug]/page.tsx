@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import type { Language } from "../../../../../../data/i18n";
-import { getDictionary } from "../../../../../../data/i18n";
+import { getDictionary, isLanguage } from "../../../../../../data/i18n";
 import { getProjectBySlug } from "../../../../../../data/projects";
 import { getByKey } from "../../../../../../lib/i18n";
 import ClassicProjectDetail from "../../../../../../themes/classic/ProjectDetail";
 import MinimalistProjectDetail from "../../../../../../themes/minimalist/ProjectDetail";
-import type { ThemeId } from "../../../../../../themes/types";
+import { isTheme } from "../../../../../../themes/registry";
 
 type ThemeProjectProps = {
   params: Promise<{
-    locale: Language;
-    theme: ThemeId;
+    locale: string;
+    theme: string;
     slug: string;
   }>;
 };
@@ -21,7 +20,8 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: ThemeProjectProps): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { locale: routeLocale, slug } = await params;
+  const locale = isLanguage(routeLocale) ? routeLocale : "pt";
   const dictionary = getDictionary(locale);
   const project = getProjectBySlug(slug);
 
@@ -40,6 +40,11 @@ export async function generateMetadata({
 
 export default async function ThemeProject({ params }: ThemeProjectProps) {
   const { locale, theme, slug } = await params;
+
+  if (!isLanguage(locale) || !isTheme(theme)) {
+    notFound();
+  }
+
   const dictionary = getDictionary(locale);
   const project = getProjectBySlug(slug);
 

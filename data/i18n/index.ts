@@ -12,4 +12,7 @@ const dictionaries: Record<Language, Dictionary> = {
 export const getDictionary = (lang: Language): Dictionary =>
   dictionaries[lang] ?? pt;
 
+export const isLanguage = (value: string): value is Language =>
+  languages.includes(value as Language);
+
 export type { Dictionary, Language };
