@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-body: var(--font-jost);
+  --font-display: var(--font-jost);
   --background: #f6f1e9;
   --foreground: #1b1b1b;
   --surface: #f6f1e9;
@@ -34,14 +36,12 @@
   --hover: rgba(177, 138, 217, 0.15);
   --shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
   --shadow-strong: 10px 0 10px rgba(0, 0, 0, 0.2);
-  --font-body: var(--font-minimal);
-  --font-display: var(--font-minimal);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 [data-theme="minimalist"] .classic-glow {
@@ -54,7 +54,7 @@ body {
   }
 
   .font-display {
-    font-family: var(--font-display), serif;
+    font-family: "Jost", sans-serif;
   }
 
   .my-card {
@@ -66,4 +66,81 @@ body {
   .my-card > div {
     align-content: center;
   }
+}
+
+.fn_cs_boxed_list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fn_cs_boxed_list li {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.fn_cs_boxed_list li:last-child {
+  margin-bottom: 0;
+}
+
+.fn_cs_boxed_list .item {
+  width: 100%;
+  background-color: #eee !important;
+  position: relative;
+  padding: 42px 40px 43px;
+  border-radius: 5px;
+}
+
+.fn_cs_boxed_list .item::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--accent);
+}
+
+.fn_cs_boxed_list .item_top {
+  display: flex;
+  margin-bottom: 14px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.fn_cs_boxed_list .item_top h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 30px;
+  color: #000;
+}
+
+.fn_cs_boxed_list .item_top span {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 30px;
+  color: #888;
+}
+
+.fn_cs_boxed_list h3 {
+  margin: 0 0 17px;
+  padding: 0;
+  font-size: 25px;
+  font-weight: 400;
+  color: #000;
+}
+
+.fn_cs_boxed_list .experience-content,
+.fn_cs_boxed_list .experience-content * {
+  font-size: 18px;
 }

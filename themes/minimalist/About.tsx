@@ -52,27 +52,26 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
           <span className="h-0.5 w-8 bg-[var(--accent)]" />
           {getByKey(dictionary, content.minimalist.experienceTitleKey)}
         </header>
-        <div className="mt-4 space-y-4">
-          {content.minimalist.experienceItems.map((item) => (
-            <div
-              key={item.companyKey}
-              className="rounded-[10px] border-l-2 border-[var(--accent)] bg-[var(--card-muted)] p-4"
-            >
-              <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-                <span>{getByKey(dictionary, item.companyKey)}</span>
-                <span>{getByKey(dictionary, item.periodKey)}</span>
-              </div>
-              <h3 className="mt-2 text-lg font-semibold text-[var(--ink)]">
-                {getByKey(dictionary, item.roleKey)}
-              </h3>
-              <div
-                className="mt-2 space-y-3 text-sm text-[var(--muted)] [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2"
-                dangerouslySetInnerHTML={{
-                  __html: getByKey(dictionary, item.descriptionKey),
-                }}
-              />
-            </div>
-          ))}
+        <div className="fn_cs_boxed_list mt-4">
+          <ul>
+            {content.minimalist.experienceItems.map((item) => (
+              <li key={item.companyKey}>
+                <div className="item">
+                  <div className="item_top">
+                    <h5>{getByKey(dictionary, item.companyKey)}</h5>
+                    <span>({getByKey(dictionary, item.periodKey)})</span>
+                  </div>
+                  <h3>{getByKey(dictionary, item.roleKey)}</h3>
+                  <div
+                    className="experience-content text-[var(--muted)] [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-1"
+                    dangerouslySetInnerHTML={{
+                      __html: getByKey(dictionary, item.descriptionKey),
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

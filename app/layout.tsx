@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Fraunces, Jost, Spline_Sans } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
 
-const displayFont = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const bodyFont = Spline_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
-
-const minimalistFont = Jost({
-  variable: "--font-minimal",
+const jostFont = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
 });
 
@@ -36,9 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lang} data-theme={theme}>
-      <body
-        className={`${bodyFont.variable} ${displayFont.variable} ${minimalistFont.variable} antialiased`}
-      >
+      <body className={`${jostFont.variable} antialiased`}>
         <div className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
           <div className="classic-glow pointer-events-none fixed inset-0 bg-[radial-gradient(60rem_40rem_at_80%_-10%,rgba(182,74,47,0.12),transparent)]" />
           {children}
