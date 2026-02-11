@@ -145,20 +145,42 @@ export const en: Dictionary = {
       role: "Senior Development Analyst",
       period: "07/2023 – Present",
       description:
-        "Optimized critical MongoDB searches and improved application flows with conversion impact.",
+        "<ul><li>I restructured the job application page experience by using usage and behavior metrics and collaborating closely with Design, resulting in a significant increase in application conversion.</li><li>Technical frontend leadership, acting as a reference for Angular, performance, and accessibility within the team.</li><li>Worked on strategic product features, including Talent Pool and Simplified Application, directly impacting candidate attraction.</li><li>Standardized WCAG AA accessibility across multiple products in the area by creating reusable accessible components and an internal best-practices guideline.</li><li>Implemented component standardization and reuse, documenting more than 40 components in Storybook, reducing code duplication and accelerating onboarding for new developers.</li><li>Acted as a technical and behavioral mentor for junior developers, increasing productivity, product knowledge, and technical maturity, resulting in recognition and career growth for mentees.</li><li>Delivered technical training covering the frontend ecosystem such as Angular and its evolution, Gitflow and semantic commits, UX fundamentals, and accessibility, to promote alignment across technology, product, and design.</li></ul>",
     },
     item2: {
       company: "TOTVS",
       role: "Mid-level Development Analyst",
       period: "07/2020 – 07/2023",
       description:
-        "Improved import/export routines and refactored screens to enhance usability.",
+        "<ul><li>Achieved a 30% usability improvement by refactoring the performance evaluation screen.</li><li>Acted as a technical reference for the domain, supporting the team in problem-solving, technical interviews, onboarding, and training after team restructuring.</li><li>Test automation with Protractor (E2E) and Postman (API).</li><li>Implemented test coverage validation in the pipeline, increasing adherence to unit test creation and reducing potential production failures.</li><li>Participated in code reviews, contributing to standardization, code quality, and dissemination of best practices within the team.</li></ul>",
     },
     item3: {
       company: "Grupo KRS",
       role: "Junior Front-end Developer",
       period: "09/2018 – 06/2020",
-      description: "Junior Front-end Developer.",
+      description:
+        "<ul><li>Development of frontend applications with React/Redux and Angular, in internal and third-party projects.</li><li>Backlog and sprint organization, technical documentation, and continuous refactoring.</li><li>Participation in code reviews and release management.</li></ul>",
+    },
+    item4: {
+      company: "CBYK Consulting",
+      role: "Junior Front-end Developer",
+      period: "06/2018 – 09/2018",
+      description:
+        "<ul><li>Built systems for hospitality and education using React and .NET Core.</li><li>Created frontend/Webpack architecture, handled AWS deployments, and presented sprint progress biweekly.</li></ul>",
+    },
+    item5: {
+      company: "CBYK Consulting",
+      role: ".NET Intern",
+      period: "10/2017 – 05/2018",
+      description:
+        "<ul><li>Worked on .NET Core maintenance and later on a hospitality system with Angular; unit testing with Jest, documentation, and Git workflows (PRs and code review).</li></ul>",
+    },
+    item6: {
+      company: "BRQ Digital Solutions",
+      role: "COBOL Intern",
+      period: "10/2016 – 10/2017",
+      description:
+        "<ul><li>Development and analysis in COBOL, technical documentation, maintenance, testing, and JCLs.</li></ul>",
     },
   },
   skills: {

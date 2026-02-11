@@ -134,6 +134,24 @@ export type Dictionary = {
       period: string;
       description: string;
     };
+    item4: {
+      company: string;
+      role: string;
+      period: string;
+      description: string;
+    };
+    item5: {
+      company: string;
+      role: string;
+      period: string;
+      description: string;
+    };
+    item6: {
+      company: string;
+      role: string;
+      period: string;
+      description: string;
+    };
   };
   skills: {
     accessibility: string;

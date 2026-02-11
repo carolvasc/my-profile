@@ -65,9 +65,12 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
               <h3 className="mt-2 text-lg font-semibold text-[var(--ink)]">
                 {getByKey(dictionary, item.roleKey)}
               </h3>
-              <p className="mt-2 text-sm text-[var(--muted)]">
-                {getByKey(dictionary, item.descriptionKey)}
-              </p>
+              <div
+                className="mt-2 space-y-3 text-sm text-[var(--muted)] [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2"
+                dangerouslySetInnerHTML={{
+                  __html: getByKey(dictionary, item.descriptionKey),
+                }}
+              />
             </div>
           ))}
         </div>

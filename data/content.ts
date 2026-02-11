@@ -180,6 +180,24 @@ export const content: ContentContract = {
         periodKey: "experience.item3.period",
         descriptionKey: "experience.item3.description",
       },
+      {
+        companyKey: "experience.item4.company",
+        roleKey: "experience.item4.role",
+        periodKey: "experience.item4.period",
+        descriptionKey: "experience.item4.description",
+      },
+      {
+        companyKey: "experience.item5.company",
+        roleKey: "experience.item5.role",
+        periodKey: "experience.item5.period",
+        descriptionKey: "experience.item5.description",
+      },
+      {
+        companyKey: "experience.item6.company",
+        roleKey: "experience.item6.role",
+        periodKey: "experience.item6.period",
+        descriptionKey: "experience.item6.description",
+      },
     ],
     professionalityKeys: [
       "skills.accessibility",

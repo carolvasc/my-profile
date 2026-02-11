@@ -145,20 +145,42 @@ export const pt: Dictionary = {
       role: "Analista de Desenvolvimento Sênior",
       period: "07/2023 – Atualmente",
       description:
-        "Otimização de buscas críticas em MongoDB e evolução de fluxos de candidaturas com impacto em conversão.",
+        "<ul><li>Reestruturei a experiência da página de candidaturas, utilizando métricas de uso e comportamento e atuando em conjunto com Design, resultando em aumento significativo na conversão de candidaturas.</li><li>Liderança técnica em frontend, sendo referência em Angular, performance e acessibilidade dentro do time.</li><li>Atuei no desenvolvimento de funcionalidades estratégicas do produto, entre elas Banco de Talentos e Candidatura Simplificada, impactando diretamente na atração de candidatos.</li><li>Padronizei a acessibilidade em nível WCAG AA em múltiplos produtos dentro da área, criando componentes acessíveis reutilizáveis e um guideline interno de boas práticas.</li><li>Implementei padronização e reutilização de componentes, documentando mais de 40 componentes no Storybook, reduzindo duplicação de código e acelerando o onboarding de novos desenvolvedores.</li><li>Atuei como mentora técnica e comportamental de desenvolvedores juniores, elevando produtividade, domínio do produto e maturidade técnica, resultando em méritos e na evolução da carreira dos mentorados.</li><li>Ministrei treinamentos técnicos, abordando o ecossistema de front-end como Angular e sua evolução, Gitflow e commits semânticos, fundamentos de UX e acessibilidade, para promover alinhamento entre tecnologia, produto e design.</li></ul>",
     },
     item2: {
       company: "TOTVS",
       role: "Analista de Desenvolvimento Pleno",
       period: "07/2020 – 07/2023",
       description:
-        "Melhoria de importações/exportações e refatoração de telas para ganho de usabilidade.",
+        "<ul><li>Realizei melhoria de 30% na usabilidade ao refatorar a tela de avaliações de desempenho.</li><li>Atuei como referência técnica do domínio, apoiando o time na resolução de problemas, entrevistas técnicas, onboarding e treinamentos após a reestruturação da equipe.</li><li>Automação de testes com Protractor (E2E) e Postman (API).</li><li>Implementei validação de cobertura de testes no pipeline, aumentando a adesão à criação de testes unitários e reduzindo possíveis falhas em produção.</li><li>Atuei em revisões de código (code review), contribuindo para padronização, qualidade do código e disseminação de boas práticas no time.</li></ul>",
     },
     item3: {
       company: "Grupo KRS",
-      role: "Desenvolvedora Front-end Junior",
+      role: "Desenvolvedora Front-end Júnior",
       period: "09/2018 – 06/2020",
-      description: "Desenvolvedora Front-end Junior.",
+      description:
+        "<ul><li>Desenvolvimento de aplicações frontend com React/Redux e Angular, em projetos internos e para terceiros.</li><li>Organização de backlog e sprints, documentação técnica e refatoração contínua.</li><li>Atuação em code reviews e gestão de releases.</li></ul>",
+    },
+    item4: {
+      company: "Consultoria CBYK",
+      role: "Desenvolvedora Front-end Júnior",
+      period: "06/2018 – 09/2018",
+      description:
+        "<ul><li>Sistemas para hotelaria e educação utilizando React e .NET Core.</li><li>Criação de arquitetura de front-end/Webpack, deploys na AWS e apresentações quinzenais de sprint.</li></ul>",
+    },
+    item5: {
+      company: "Consultoria CBYK",
+      role: "Estagiária .NET",
+      period: "10/2017 – 05/2018",
+      description:
+        "<ul><li>Manutenção em .NET Core e posterior atuação em sistema hoteleiro com Angular; testes unitários com Jest, documentação e fluxos de Git (PRs e code review).</li></ul>",
+    },
+    item6: {
+      company: "BRQ Digital Solutions",
+      role: "Estagiária COBOL",
+      period: "10/2016 – 10/2017",
+      description:
+        "<ul><li>Desenvolvimento e análise em COBOL, documentação técnica, manutenção, testes e JCLs.</li></ul>",
     },
   },
   skills: {
