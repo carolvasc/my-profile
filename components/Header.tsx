@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Dictionary, Language } from "../data/i18n";
 import LanguageToggle from "./LanguageToggle";
-import ThemeSwitcher from "./ThemeSwitcher";
 import type { ThemeId } from "../themes/types";
 
 type HeaderProps = {
@@ -48,15 +47,6 @@ export default function Header({ lang, dictionary, theme }: HeaderProps) {
             languageLabels={{
               pt: dictionary.header.languagePt,
               en: dictionary.header.languageEn,
-            }}
-          />
-          <ThemeSwitcher
-            currentTheme={theme}
-            locale={lang}
-            label={dictionary.header.themeLabel}
-            themeLabels={{
-              classic: dictionary.header.themeClassic,
-              minimalist: dictionary.header.themeMinimalist,
             }}
           />
         </div>

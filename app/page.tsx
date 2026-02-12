@@ -15,7 +15,7 @@ export default async function RootPage() {
   const lang = languages.includes(preferredLang) ? preferredLang : "pt";
   const cookieStore = await cookies();
   const theme =
-    cookieStore.get("theme")?.value === "minimalist" ? "minimalist" : "classic";
+    cookieStore.get("theme")?.value === "classic" ? "classic" : "minimalist";
   const selectedTheme = theme as ThemeId;
 
   redirect(`/${lang}/t/${selectedTheme}`);

@@ -22,7 +22,7 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value === "en" ? "en" : "pt-BR";
   const theme =
-    cookieStore.get("theme")?.value === "minimalist" ? "minimalist" : "classic";
+    cookieStore.get("theme")?.value === "classic" ? "classic" : "minimalist";
 
   return (
     <html lang={lang} data-theme={theme}>

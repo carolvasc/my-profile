@@ -30,7 +30,7 @@ export function middleware(request: NextRequest) {
   }
 
   const lang = cookieLang === "en" ? "en" : "pt";
-  const theme = cookieTheme === "minimalist" ? "minimalist" : "classic";
+  const theme = cookieTheme === "classic" ? "classic" : "minimalist";
   const url = request.nextUrl.clone();
   const suffix = pathname === "/" ? "" : pathname;
   url.pathname = `/${lang}/t/${theme}${suffix}`;

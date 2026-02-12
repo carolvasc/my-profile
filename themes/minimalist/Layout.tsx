@@ -3,7 +3,6 @@ import type { Dictionary, Language } from "../../data/i18n";
 import { content } from "../../data/content";
 import { getByKey } from "../../lib/i18n";
 import LanguageToggle from "../../components/LanguageToggle";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
 import type { ThemeId } from "../types";
 
 type MinimalistLayoutProps = {
@@ -106,15 +105,6 @@ export default function MinimalistLayout({
               languageLabels={{
                 pt: dictionary.header.languagePt,
                 en: dictionary.header.languageEn,
-              }}
-            />
-            <ThemeSwitcher
-              currentTheme={theme}
-              locale={locale}
-              label={dictionary.header.themeLabel}
-              themeLabels={{
-                classic: dictionary.header.themeClassic,
-                minimalist: dictionary.header.themeMinimalist,
               }}
             />
           </div>
