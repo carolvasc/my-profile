@@ -283,6 +283,175 @@ projects.ts
 
 ---
 
+### 🟦 Milestone 6 — Internationalization (PT/EN toggle)
+**Goal:** allow recruiters/tech leads to read the portfolio in English.
+
+**Constraints**
+- English content must be derived from the same facts as Portuguese (no inventing).
+- Keep URLs stable and clear (choose one approach and apply consistently).
+
+**Recommended approach**
+- Dictionary-based translation (no CMS). Either:
+  - A) Route-based: `/pt` and `/en`, or
+  - B) UI toggle with stored preference and language in URL (preferred for clarity)
+
+**Tasks**
+- [x] Decide i18n strategy: route-based (`/pt`, `/en`) or locale segment in Next App Router
+- [x] Create translation dictionaries for core UI copy (e.g., `data/i18n/pt.ts`, `data/i18n/en.ts`)
+- [x] Implement a language toggle in the Header (PT / EN)
+- [x] Translate: Home, About, Projects list, Project detail, Contact
+- [x] Ensure metadata (title/description) is localized
+- [x] Ensure the selected language persists (cookie or localStorage) and is reflected in navigation
+
+**Done when**
+- [x] Recruiter can switch PT ↔ EN from the UI
+- [x] All pages have PT and EN versions
+- [x] Project content is consistently translated (same meaning, same facts)
+- [x] Metadata is correct for both languages
+
+---
+
+### 🟦 Milestone 6 — Multi-Theme Layouts (2 themes) with i18n as single content source
+**Goal:** support 2 portfolio themes (Classic (current), Minimalist) with different structures, while using i18n dictionaries as the single source of truth for all text.
+
+**Theme set**
+- `classic` (existing layout)
+- `minimaslit` 
+
+**Hard rules (agent guardrails)**
+- Use references\minimalist-design-system.md on frontend-design as design system.
+- Themes MAY have different section order and different page structures.
+- Themes MUST NOT contain hardcoded text (no strings). All copy must come from i18n.
+- Themes MUST NOT invent new career facts, roles, companies, or metrics.
+- If a theme needs extra UI sections, it must be composed from existing content keys or existing structured data, not new invented copy.
+- Do not copy third-party template code unless licensed and explicitly vendored with attribution.
+
+---
+
+#### Single Source of Truth (Content)
+All text must come from i18n dictionaries:
+- `data/i18n/pt.ts`
+- `data/i18n/en.ts`
+
+Structured data (projects, links, etc.) can exist as typed data, but any human-readable copy must be stored in i18n (as strings, string arrays, or rich text blocks).
+
+**Rule of thumb:**
+- Data file: IDs, slugs, arrays, URLs, dates
+- i18n: every visible sentence/paragraph/tagline/title/label
+
+---
+
+#### Content Contract (must be implemented by all themes)
+Define a normalized typed model that references i18n keys (not raw strings):
+
+Minimum contract:
+- Identity: `name`, `role`, `location`, `summaryKey`
+- Links: email, GitHub, LinkedIn
+- Primary stack: list of skill labels (prefer i18n keys if they are words in UI)
+- About: arrays of paragraph keys + expertise bullet keys
+- Projects: list with:
+  - `slug`
+  - `titleKey`
+  - `summaryKey`
+  - `problemKey`
+  - `decisionsKey[]`
+  - `resultsKey[]`
+  - `stack` (tags can be fixed labels or keys)
+  - `links` (repo/demo URLs)
+
+Themes only render using this contract + a translation function.
+
+---
+
+#### Routing strategy (themes + locale)
+Pick one and apply consistently across the app:
+
+**Option A (recommended, easy to share):**
+`/[locale]/t/[theme]/...`
+Example:
+- `/en/t/current`
+- `/pt/t/deebo/projects`
+- `/en/t/rewall/projects/my-project`
+
+**Option B (less preferred):**
+`/t/[theme]` with language toggle stored in cookie/localStorage.
+
+Preferred: Option A, because it keeps theme + language in the URL for recruiters.
+
+---
+
+#### Tasks
+- [ ] Ensure i18n is the single content source:
+  - [ ] Move any remaining hardcoded copy into dictionaries (pt/en)
+  - [ ] Ensure project details use i18n keys for all text fields
+- [ ] Create the typed content contract referencing i18n keys (no raw strings)
+- [ ] Implement Theme Registry:
+  - [ ] `themes/registry.ts` includes theme IDs and labels (labels can be i18n keys)
+- [ ] Implement theme routing consistent with i18n:
+  - [ ] Add routes under `app/[locale]/t/[theme]/...` (or chosen strategy)
+  - [ ] Invalid theme -> `notFound()`
+- [ ] Implement 3 theme renderers (structures may differ):
+  - [ ] `themes/current/*` renders current structure
+  - [ ] `themes/deebo/*` renders Deebo-inspired structure
+  - [ ] `themes/rewall/*` renders Rewall-inspired structure
+- [ ] Implement Theme Switcher UI:
+  - [ ] Switch among 3 themes
+  - [ ] Must preserve current locale when switching
+  - [ ] Persist theme preference (cookie recommended)
+- [ ] Ensure deep links work for each theme:
+  - [ ] Projects list route works under each theme
+  - [ ] Project detail route works under each theme
+- [ ] Localized metadata:
+  - [ ] Titles/descriptions are correct for both locale and theme
+
+---
+
+#### Done when
+- [ ] 3 themes are selectable via UI, preserving locale
+- [ ] Each theme can have different structure but uses the same i18n-backed content
+- [ ] No hardcoded copy exists inside theme components
+- [ ] Theme and locale are reflected in URL (if Option A chosen)
+- [ ] Projects list + detail pages work in every theme for PT and EN
+- [ ] Accessibility remains acceptable across themes (focus, headings, contrast)
+
+---
+
+#### Notes for the agent
+- Do not change the i18n strategy while implementing themes.
+- Treat template references as visual inspiration unless licensed.
+- If a theme seems to require more copy, add new i18n keys in both pt/en and keep them factual.
+
+---
+
+### 🟦 Milestone 8 — CV Update Workflow (detect changes and update site content)
+**Goal:** when a new CV is uploaded, the agent can identify what changed and update the portfolio accordingly.
+
+**Key idea**
+- Treat a text version as the canonical source for diffs.
+- Keep a simple “content mapping” so the agent knows which sections/pages depend on which CV fields.
+
+**Tasks**
+- [ ] Add a canonical text source for CV: `docs/cv.md` (primary) and keep `docs/cv.pdf` as reference
+- [ ] Create `docs/cv_versions/` and store snapshots (e.g., `cv_2026-01-29.md`, `cv_YYYY-MM-DD.md`)
+- [ ] Add a `docs/cv_change_log.md` template for recording updates (what changed, date, why)
+- [ ] Create `docs/content_map.md` describing where each CV section maps into the site (e.g., Summary → Home/About; Experience → About; Projects → Projects pages)
+- [ ] Update AGENTS.md with a “CV update mode” procedure (see below)
+- [ ] Define a repeatable process: when `docs/cv.md` changes, agent must compare against latest snapshot and update only impacted pages/data
+
+**Done when**
+- [ ] There is a clear canonical CV text file (`docs/cv.md`)
+- [ ] There is at least one version snapshot in `docs/cv_versions/`
+- [ ] Agent can produce a changelist: “what changed” and “which site sections must change”
+- [ ] Updating the CV results in targeted edits (no random rewriting of unrelated copy)
+
+**CV update mode (procedure to add to AGENTS.md)**
+- [ ] Add instructions: when CV changes, diff `docs/cv.md` vs latest file in `docs/cv_versions/`
+- [ ] Extract a “Change Summary” (new roles, dates, skills, projects, metrics)
+- [ ] Update only the mapped sections in code/data according to `docs/content_map.md`
+- [ ] Create a new snapshot in `docs/cv_versions/` after updates
+
+---
+
 ## 11. Explicit Non-goals (Out of Scope v1)
 Do NOT implement:
 - CMS
