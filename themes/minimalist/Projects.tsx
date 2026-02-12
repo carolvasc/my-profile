@@ -24,7 +24,7 @@ export default function MinimalistProjects({
         <h1 className="text-3xl font-semibold text-[var(--ink)]">
           {getByKey(dictionary, content.projects.sectionTitleKey)}
         </h1>
-        <p className="text-sm text-[var(--muted)]">
+        <p className="text-base text-[var(--muted)]">
           {getByKey(dictionary, content.projects.sectionIntroKey)}
         </p>
       </header>
@@ -34,16 +34,16 @@ export default function MinimalistProjects({
             key={project.slug}
             className="rounded-[10px] border border-[var(--border)] bg-[var(--card-muted)] p-5 shadow-[var(--shadow)]"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+            <p className="text-base uppercase tracking-[0.2em] text-[var(--muted)]">
               {getByKey(dictionary, content.projects.cardEyebrowKey)}
             </p>
-            <h2 className="mt-2 text-lg font-semibold text-[var(--ink)]">
+            <h2 className="mt-2 text-base font-semibold text-[var(--ink)]">
               {getByKey(dictionary, project.titleKey)}
             </h2>
-            <p className="mt-2 text-sm text-[var(--muted)]">
+            <p className="mt-2 text-base text-[var(--muted)]">
               {getByKey(dictionary, project.summaryKey)}
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+            <div className="mt-4 flex flex-wrap gap-2 text-base uppercase tracking-[0.2em] text-[var(--muted)]">
               {project.stackKeys.map((key) => (
                 <span
                   key={key}
@@ -53,7 +53,7 @@ export default function MinimalistProjects({
                 </span>
               ))}
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+            <div className="mt-4 flex items-center justify-between text-base uppercase tracking-[0.2em] text-[var(--muted)]">
               <Link
                 href={`/${locale}/t/${theme}/projects/${project.slug}`}
                 className="transition hover:text-[var(--accent)]"
