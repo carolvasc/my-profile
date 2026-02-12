@@ -18,9 +18,9 @@ export default function MinimalistProjects({
   return (
     <div className="space-y-8">
       <header className="space-y-4">
-        <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-          {dictionary.projects.eyebrow}
-        </p>
+        <div className="section_title">
+          <h3>{dictionary.projects.eyebrow}</h3>
+        </div>
         <h1 className="text-3xl font-semibold text-[var(--ink)]">
           {getByKey(dictionary, content.projects.sectionTitleKey)}
         </h1>

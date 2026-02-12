@@ -93,8 +93,8 @@ export const content: ContentContract = {
     phoneKey: "identity.phone",
   },
   links: {
-    github: "https://github.com/",
-    linkedin: "https://www.linkedin.com/",
+    github: "https://github.com/carolvasc",
+    linkedin: "https://www.linkedin.com/in/carolina-vasconcelos",
   },
   home: {
     eyebrowKey: "home.eyebrow",

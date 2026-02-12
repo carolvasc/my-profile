@@ -1,9 +1,9 @@
+import Image from "next/image";
 import type { Dictionary } from "../../data/i18n";
 import { content } from "../../data/content";
 import { getByKey } from "../../lib/i18n";
 import MinimalistAbout from "./About";
 import MinimalistProjects from "./Projects";
-import MinimalistContact from "./Contact";
 
 type MinimalistHomeProps = {
   dictionary: Dictionary;
@@ -21,7 +21,15 @@ export default function MinimalistHome({
       <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
         <div className="relative h-40 w-40 sm:h-48 sm:w-48">
           <div className="absolute inset-0 rounded-full border-[6px] border-[var(--accent)]" />
-          <div className="absolute inset-3 rounded-full bg-[var(--card-muted)]" />
+          <div className="absolute inset-3 overflow-hidden rounded-full bg-[var(--card-muted)]">
+            <Image
+              src="/assets/photo.jpg"
+              alt={dictionary.identity.name}
+              fill
+              sizes="192px"
+              className="object-cover"
+            />
+          </div>
           <span className="absolute -top-2 right-6 h-8 w-1 rounded-full bg-[var(--accent)] rotate-[18deg]" />
           <span className="absolute -top-1 right-2 h-6 w-1 rounded-full bg-[var(--accent)] rotate-[18deg]" />
           <span className="absolute -right-3 bottom-6 h-8 w-1 rounded-full bg-[var(--accent)] rotate-[18deg]" />
@@ -41,7 +49,6 @@ export default function MinimalistHome({
 
       <MinimalistAbout dictionary={dictionary} />
       <MinimalistProjects dictionary={dictionary} locale={locale} theme={theme} />
-      <MinimalistContact dictionary={dictionary} />
     </div>
   );
 }

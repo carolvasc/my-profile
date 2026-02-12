@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --mc: #b18ad9;
   --font-body: var(--font-jost);
   --font-display: var(--font-jost);
   --background: #f6f1e9;
@@ -58,13 +59,48 @@ body {
   }
 
   .my-card {
-    border-right: 20px solid purple;
+    border-right: 20px solid var(--mc);
+    border-radius: 12px;
     height: 100%;
     margin-top: 40px;
+    overflow: hidden;
+    font-family: "Jost", sans-serif;
+    font-size: 16px;
   }
 
   .my-card > div {
     align-content: center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .my-card * {
+    font-family: "Jost", sans-serif;
+    font-size: 16px;
+  }
+
+  .my-card h3 {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .my-card .first-name {
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .my-card .bio,
+  .my-card .bio *,
+  .my-card .contact-info,
+  .my-card .contact-info * {
+    font-size: 18px;
   }
 }
 
@@ -143,4 +179,45 @@ body {
 .fn_cs_boxed_list .experience-content,
 .fn_cs_boxed_list .experience-content * {
   font-size: 18px;
+}
+
+.section_title h3 {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-bottom: 11px;
+  text-transform: uppercase;
+  color: #eee;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.section_title h3::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background-color: var(--mc);
+  bottom: 0;
+  left: 0;
+}
+
+.minimalist-content-panel {
+  min-height: 825px !important;
+}
+
+@media (min-width: 1800px) {
+  .minimalist-shell {
+    width: 80% !important;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1801px) and (max-width: 3200px) {
+  .minimalist-shell {
+    width: 70% !important;
+    margin: 0 auto;
+  }
 }

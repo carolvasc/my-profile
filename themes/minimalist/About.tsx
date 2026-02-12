@@ -10,10 +10,9 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
   return (
     <div className="space-y-8">
       <section className="rounded-[10px] bg-[var(--card)] p-8 shadow-[var(--shadow)]">
-        <header className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-          <span className="h-0.5 w-8 bg-[var(--accent)]" />
-          {getByKey(dictionary, content.minimalist.biographyTitleKey)}
-        </header>
+        <div className="section_title">
+          <h3>{getByKey(dictionary, content.minimalist.biographyTitleKey)}</h3>
+        </div>
         {content.about.introKeys.map((key) => (
           <p key={key} className="mt-4 text-[18px] text-[var(--muted)]">
             {getByKey(dictionary, key)}
@@ -22,10 +21,9 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
       </section>
 
       <section className="rounded-[10px] bg-[var(--card)] p-6 shadow-[var(--shadow)]">
-        <header className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-          <span className="h-0.5 w-8 bg-[var(--accent)]" />
-          {getByKey(dictionary, content.minimalist.experienceTitleKey)}
-        </header>
+        <div className="section_title">
+          <h3>{getByKey(dictionary, content.minimalist.experienceTitleKey)}</h3>
+        </div>
         <div className="fn_cs_boxed_list mt-4">
           <ul>
             {content.minimalist.experienceItems.map((item) => (
@@ -50,10 +48,9 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
       </section>
 
       <section className="rounded-[10px] bg-[var(--card)] p-6 shadow-[var(--shadow)]">
-        <header className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-          <span className="h-0.5 w-8 bg-[var(--accent)]" />
-          {getByKey(dictionary, content.minimalist.educationTitleKey)}
-        </header>
+        <div className="section_title">
+          <h3>{getByKey(dictionary, content.minimalist.educationTitleKey)}</h3>
+        </div>
         <div className="fn_cs_boxed_list mt-4">
           <ul>
             {content.minimalist.educationItems.map((item) => (
@@ -75,10 +72,9 @@ export default function MinimalistAbout({ dictionary }: MinimalistAboutProps) {
       </section>
 
       <section className="rounded-[10px] bg-[var(--card)] p-6 shadow-[var(--shadow)]">
-        <header className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-          <span className="h-0.5 w-8 bg-[var(--accent)]" />
-          {getByKey(dictionary, content.minimalist.professionalityTitleKey)}
-        </header>
+        <div className="section_title">
+          <h3>{getByKey(dictionary, content.minimalist.professionalityTitleKey)}</h3>
+        </div>
         <ul className="mt-4 flex flex-wrap gap-3 text-base text-[var(--ink)]">
           {content.minimalist.professionalityKeys.map((key) => (
             <li
